@@ -3,7 +3,7 @@
 
 
 
-
+// src/routes/routeAddictions/findAllAddictions.js
 
 const { Addiction } = require('../../db/sequelize');
 const { Op } = require('sequelize');

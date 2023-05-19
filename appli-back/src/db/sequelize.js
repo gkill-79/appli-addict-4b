@@ -8,7 +8,7 @@ const PatientModel = require('../models/patients');
 const AddictionsModel = require('../models/addictions');
 const UserModel = require('../models/users');
 const CounterModel = require('../models/counter');
-const AdvicesModel = require('../models/advices');
+const AdviceModel = require('../models/adviceModel');
 const users = require('./mock-users');
 
 const sequelize = new Sequelize('the_rabbit_hold2', 'root', '', {
@@ -24,14 +24,14 @@ const Patient = PatientModel(sequelize, DataTypes);
 const Addiction = AddictionsModel(sequelize, DataTypes);
 const User = UserModel(sequelize, DataTypes);
 const Counter = CounterModel(sequelize, DataTypes);
-const Advices = AdvicesModel(sequelize, DataTypes);
+const Advice = AdviceModel(sequelize, DataTypes);
 
 const models = {
   Patient,
   Addiction,
   User,
   Counter,
-  Advices
+  Advice
 };
 
 Object.keys(models).forEach(modelName => {

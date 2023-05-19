@@ -14,9 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: { 
-        msg: 'Le nom est déjà pris.'
-      },
       validate: {
         notNull: { msg: 'Le nom doit être renseigné.' },
         notEmpty: { msg: 'Le nom doit être renseigné.' },
@@ -25,14 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: { 
-        msg: 'Le nom est déjà pris.'
-      },
       validate: {
         notNull: { msg: 'Le nom doit être renseigné.' },
         notEmpty: { msg: 'Le nom doit être renseigné.' },
       }
     },
+    
     password: {
         type: DataTypes.STRING,
         allowNull: false,

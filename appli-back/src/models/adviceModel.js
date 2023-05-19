@@ -1,9 +1,7 @@
 
 
-// src/models/advices.js
-
 module.exports = (sequelize, DataTypes) => {
-  const Advices = sequelize.define('advices', {
+  const Advices = sequelize.define('Advices', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -11,11 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'patients',
-        key: 'id'
-      }
+      allowNull: false
     },
     token: {
       type: DataTypes.STRING,
@@ -37,11 +31,17 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     createdAt: 'created_at',
-    updatedAt: 'updated_at'
+    updatedAt: 'updated_at',
+    tableName: 'Advices',
+    freezeTableName: true 
   });
 
   Advices.associate = function(models) {
     Advices.belongsTo(models.Patient, { foreignKey: 'user_id', targetKey: 'id' });
+  };
+
+  Advices.getAll = async function() {
+    return await this.findAll();
   };
 
   return Advices;
