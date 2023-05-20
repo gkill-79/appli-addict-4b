@@ -31,8 +31,6 @@
         }
     });
 
-
-
     document.getElementById('monBoutonReset').addEventListener('click', function() {
         // Réinitialiser le compteur
         compteur = 0;

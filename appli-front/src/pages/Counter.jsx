@@ -1,93 +1,5 @@
 
 
-
-
-// // src/pages/Counter.js
-// import React, { useState, useEffect } from "react";
-
-// const Counter = () => {
-//   const [count, setCount] = useState(0);
-//   const [price, setPrice] = useState(0);
-//   const [submitted, setSubmitted] = useState(false);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const response = await fetch("http://localhost:3300/api/routes/compteur/1");
-//       const data = await response.json();
-//       if (data) {
-//         setCount(data.count);
-//         setPrice(data.price);
-//       }
-//     }
-//     fetchData();
-//   }, []);
-
-//   const handleValidation = () => {
-//     if (!submitted) {
-//       setCount(count + 1);
-//       setSubmitted(true);
-//     }
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const response = await fetch("http://localhost:3300/api/routes/compteur/1", {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ count, price }),
-//     });
-
-//     if (response.ok) {
-//       alert("Données enregistrées avec succès !");
-//       setSubmitted(false);
-//     } else {
-//       alert("Erreur lors de l'enregistrement des données.");
-//     }
-//   };
-
-//   return (
-//     <div className="container">
-//       <div className="counter">
-//         <h2>Compteur : {count}</h2>
-//         <button onClick={handleValidation}>Valider la journée</button>
-//       </div>
-//       <form onSubmit={handleSubmit}>
-//         <label htmlFor="price">Prix moyen journalier des produits :</label>
-//         <input
-//           type="number"
-//           id="price"
-//           value={price}
-//           onChange={(e) => setPrice(e.target.value)}
-//           required
-//         />
-//         <button type="submit">Enregistrer le prix</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Counter;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect } from "react";
 
 // const Counter = () => {
@@ -231,8 +143,8 @@ const Counter = () => {
   const [submitted, setSubmitted] = useState(false);
   const [dateDebut, setDateDebut] = useState(() => localStorage.getItem('date-debut') ? localStorage.getItem('date-debut') : null);
   const [dernierClic, setDernierClic] = useState(() => localStorage.getItem('dernierClic') ? new Date(localStorage.getItem('dernierClic')) : null);
-  const [dailySum, setDailySum] = useState(0); // Ajout de l'état dailySum
-  const [total, setTotal] = useState(0); // Ajout de l'état total
+  const [dailySum, setDailySum] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -273,8 +185,9 @@ const Counter = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const total = Number(price) + Number(dailySum);
+    const total = count * Number(price) + Number(dailySum);
     setTotal(total);
+    setCount(prevCount => prevCount + Number(dailySum));
     const response = await fetch("http://localhost:3300/api/routes/compteur/1", {
       method: "PUT",
       headers: {
@@ -305,52 +218,49 @@ const Counter = () => {
               <p>
                 <label htmlFor="jours-arret">Nombre de jours d'arrêt:</label>
                 <span><input type="number" id="jours-arret" readOnly value={count} /></span>
-              </p>
-              <p>
-                <label htmlFor="date-du-jour">Date du jour:</label>
-                <span><input type="date" id="date-du-jour" readOnly value={new Date().toISOString().substring(0, 10)} /></span>
-              </p>
+                </p>
+                <p>
+                  <label htmlFor="date-du-jour">Date du jour:</label>
+                  <span><input type="date" id="date-du-jour" readOnly value={new Date().toISOString().substring(0, 10)} /></span>
+                </p>
+              </div>
+              <div className="compteur-actions">
+                <div>
+                <button id="monBouton" onClick={handleClick} className="btn">Cliquez-moi</button>
+                    <input type="number"id="dailySum"value={dailySum} onChange={(e) => setDailySum(e.target.value)} required className="compteur input"/>
+                </div>
+                <div>
+                  <p id="compteur">{count}</p>
+                </div>
+                <div>
+                  <button id="monBoutonReset" onClick={handleReset}>Réinitialiser</button>
+                </div>
+              </div>
             </div>
-            <div className="compteur-actions">
-              <div>
-                <button id="monBouton" onClick={handleClick}>Cliquez-moi</button>
-              </div>
-              <div>
-                <p id="compteur">{count}</p>
-              </div>
-              <div>
-                <button id="monBoutonReset" onClick={handleReset}>Réinitialiser</button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <form onSubmit={handleSubmit}>
-        {/* Reste du formulaire */}
-        <label htmlFor="dailySum">Somme du jour :</label>
-        <input
-          type="number"
-          id="dailySum"
-          value={dailySum}
-          onChange={(e) => setDailySum(e.target.value)}
-          required
-        />
-        <button type="submit">Enregistrer le prix et la somme du jour</button>
-      </form>
-
-      <div className="total">
-        <h3>Total : {total}</h3>
+          </section>
+        </main>
+  
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="dailySum">Somme du jour :</label>
+          <input
+            type="number"
+            id="dailySum"
+            value={dailySum}
+            onChange={(e) => setDailySum(e.target.value)}
+            required
+          />
+          <button type="submit">Enregistrer le prix et la somme du jour</button>
+        </form>
+  
+        <div className="total">
+          <h3>Total : {total}</h3>
+        </div>
       </div>
-
-      {/* Reste du code */}
-    </div>
-  );
-};
-
-export default Counter;
-
-
+    );
+  };
+  
+  export default Counter;
+  
 
 
 

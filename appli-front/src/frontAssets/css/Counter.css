@@ -19,7 +19,7 @@
 
 .compteur {
     height: 33.333vh;
-    width: 50%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,15 +63,22 @@
     margin: 0 auto;
 }
 
+.compteur input {
+    width: 50%;  /* Ajustez cette valeur pour modifier la largeur des champs de saisie */
+    padding: 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
 .btn {
     background-color: #4CAF50; /* green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 8px 16px;  /* Réduisez ces valeurs pour rendre les boutons plus petits */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;  /* Réduisez cette valeur pour réduire la taille du texte dans les boutons */
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -97,21 +104,12 @@ form {
     margin: 20px 0;
   }
   
-  form input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  form button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+  .compteur input {
+    width: 50%;  /* Ajustez cette valeur pour modifier la largeur des champs de saisie */
+    padding: 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
   
   form button:hover {
     background-color: #45a049;
