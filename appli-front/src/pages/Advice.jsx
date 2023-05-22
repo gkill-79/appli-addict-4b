@@ -92,26 +92,24 @@
 
 
 
-// src/pages/Advice.jsx
-
 import React, { useEffect, useState } from "react";
 import "../frontAssets/css/Advice.css";
 
 const Advice = () => {
   const [advices, setAdvices] = useState([]);
-  const [newAdvice, setNewAdvice] = useState(''); 
-  const [healthProfessionalMessages, setHealthProfessionalMessages] = useState([]); 
+  const [newAdvice, setNewAdvice] = useState('');
+  const [healthProfessionalMessages, setHealthProfessionalMessages] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3300/api/routes/advices')
       .then(response => response.json())
       .then(data => setAdvices(data.data))
-      .catch(error => console.error('Il y avait une erreur pour récupérer les conseils', error));
+      .catch(error => console.error('Erreur lors de la récupération des conseils :', error));
 
     fetch('http://localhost:3300/api/routes/healthProfessionalMessages')
       .then(response => response.json())
       .then(data => setHealthProfessionalMessages(data.data))
-      .catch(error => console.error('Il y avait une erreur pour récupérer les messages des professionnels de santé', error));
+      .catch(error => console.error('Erreur lors de la récupération des messages des professionnels de santé :', error));
   }, []);
 
   const createAdvice = () => {
@@ -122,24 +120,31 @@ const Advice = () => {
       },
       body: JSON.stringify({ name: newAdvice })
     })
-    .then(response => response.json())
-    .then(data => {
-      setAdvices([...advices, data.data]);
-      setNewAdvice('');
-    })
-    .catch(error => console.error('Il y avait une erreur pour créer un conseil', error));
+      .then(response => response.json())
+      .then(data => {
+        setAdvices([...advices, data.data]);
+        setNewAdvice('');
+      })
+      .catch(error => console.error('Erreur lors de la création d\'un conseil :', error));
   };
 
   const deleteAdvice = (id) => {
+    console.log(`Suppression du conseil avec l'id : ${id}`);  // Affiche l'ID du conseil à supprimer
     fetch(`http://localhost:3300/api/routes/advices/${id}`, {
       method: 'DELETE'
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP : ${response.status}`);  // Si la requête échoue, on lance une erreur
+      }
+      return response.json();
+    })
     .then(data => {
+      console.log(`Réponse du serveur : ${JSON.stringify(data)}`);  // Affiche la réponse du serveur
       setAdvices(advices.filter(advice => advice.id !== data.data.id));
     })
-    .catch(error => console.error('Il y avait une erreur pour supprimer un conseil', error));
-  };
+    .catch(error => console.error('Erreur lors de la suppression d\'un conseil :', error));
+};
 
   return (
     <div className="page-container">
@@ -158,7 +163,7 @@ const Advice = () => {
 
       <div className="middle-section">
         <div className="input-section">
-          <textarea value={newAdvice} onChange={e => setNewAdvice(e.target.value)} placeholder="Entrez vos conseils et astuces ici..."/>
+          <textarea className="advice-input" value={newAdvice} onChange={e => setNewAdvice(e.target.value)} placeholder="Entrez vos conseils et astuces ici..." />
           <div className="buttons-section">
             <button className="add-button" onClick={createAdvice}>Ajouter un nouveau conseil</button>
           </div>
@@ -177,14 +182,13 @@ const Advice = () => {
               <p className="message-content">{message.content}</p>
             </div>
           ))}
-          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Advice;
-
 
 
 

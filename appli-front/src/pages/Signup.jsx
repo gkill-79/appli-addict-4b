@@ -1,8 +1,6 @@
-// src/Signup.js
 import React, { useState } from 'react';
 import '../frontAssets/css/Signup.css';
 
-// Composant d'inscription (formulaire) avec hooks et fonction fléchée (useState)
 const Signup = () => {
   const [credentials, setCredentials] = useState({
     username: '',
@@ -10,14 +8,37 @@ const Signup = () => {
     email: '',
   });
 
-  // fonction de soumission du formulaire d'inscription
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Enregistrement des informations d'identification dans votre API
-    console.log(credentials);
+    try {
+      // Appel à votre API pour enregistrer les informations d'utilisateur
+      const response = await fetch('https://votre-api.com/inscription', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      if (response.ok) {
+        // Les informations d'utilisateur ont été enregistrées avec succès
+        console.log('Inscription réussie !');
+        // Réinitialiser les champs du formulaire après la soumission
+        setCredentials({
+          username: '',
+          password: '',
+          email: '',
+        });
+      } else {
+        // Gérer les erreurs d'enregistrement
+        console.log('Erreur lors de l\'inscription');
+      }
+    } catch (error) {
+      // Gérer les erreurs de connexion à l'API
+      console.log('Erreur de connexion à l\'API');
+    }
   };
 
-  // fonction de gestion des changements dans le formulaire d'inscription
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prevState) => ({
@@ -26,7 +47,6 @@ const Signup = () => {
     }));
   };
 
-  // affichage du formulaire d'inscription
   return (
     <div className="signup-container">
       <h1>Créer un compte</h1>
@@ -71,7 +91,6 @@ const Signup = () => {
 };
 
 export default Signup;
-
 
 
 

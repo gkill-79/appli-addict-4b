@@ -130,101 +130,99 @@ footer {
 
 
 
-// src/frontAssets/css/Advice.css
-
  body {
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  .page-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  .left-section, .middle-section, .right-section {
-    width: 30%;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .middle-section textarea {
-    width: 100%;
-    height: 200px;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  .buttons-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .add-button, .delete-button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .add-button {
-    background-color: #007BFF;
-    color: #fff;
-  }
-  
-  .delete-button {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  
-  .right-section {
-    width: 30%;
-    padding: 1em;
-    box-sizing: border-box;
-    height: 100%;
-    overflow-y: auto; /* Permet de faire défiler les messages s'il y en a beaucoup */
-  }
-  
-  .message-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .message-box {
-    margin-bottom: 1em;
-    padding: 1em;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background: #f0f0f0;
-  }
-  
-  .message-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5em;
-    font-weight: bold;
-  }
-  
-  .message-sender {
-    color: #007BFF;
-  }
-  
-  .message-timestamp {
-    color: #6c757d;
-    font-size: 0.8em;
-  }
-  
-  .message-content {
-    margin: 0;
-  }
-  
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left-section, .middle-section, .right-section {
+  width: 30%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.advice-input {
+  width: 100%;
+  max-width: 100%;  /* Limite la largeur du champ de texte */
+  height: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.buttons-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.add-button, .delete-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-button {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.right-section {
+  width: 30%;
+  padding: 1em;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-box {
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #f0f0f0;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.message-sender {
+  color: #007BFF;
+}
+
+.message-timestamp {
+  color: #6c757d;
+  font-size: 0.8em;
+}
+
+.message-content {
+  margin: 0;
+}
 

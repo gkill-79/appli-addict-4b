@@ -354,20 +354,6 @@ h2 {
     display: inline-block;
 }
 
-/* .button, .compteur-container input {
-    padding: 10px 20px;
-    font-size: 14px;
-    background-color: #c28618;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-    width: 50%;
-    margin: auto;
-} */
-
 .button:hover {
     background-color: #20da58;
 }
@@ -455,6 +441,12 @@ h2 {
     margin-bottom: 20px;
 }
 
+.date {
+    width: 50%;  /* Réduit la largeur des éléments de date et de jour */
+    display: flex;
+    justify-content: space-between;  /* Ajoute un espacement entre les éléments */
+}
+
 .champs-input-jour {
     width: 100%;
     display: flex;
@@ -462,6 +454,13 @@ h2 {
     /* justify-content: space-between; */
     margin-bottom: 20px;
 }
+
+
+.date label, .champs-input-jour label {
+    width: 200px;  /* Augmente la largeur des labels à 200px */
+    display: inline-block;  /* Permet à l'élément label de respecter la largeur définie */
+}
+
 
 .menu-addictions {
     width: 100%;
@@ -472,14 +471,14 @@ h2 {
 }
 
 .monBouton {
-    width: 40%;
+    width: 100%;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
 }
 
 .monBoutonReset {
-    width: 40%;
+    width: 100%;
     margin: auto;
     margin-bottom: 20px;
 }
@@ -519,6 +518,34 @@ h2 {
     margin-bottom: 10px;
     margin: auto;
 }
+
+.messages {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.message-box, .astuces-box {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.messages-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-box, .astuces-box {
+    width: 45%;  /* Réduit la largeur à 45% pour laisser un peu d'espace entre les boîtes */
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #c28618;  /* Ajoute une bordure pour mieux distinguer les boîtes */
+    border-radius: 5px;  /* Ajoute un peu d'arrondissement aux coins des boîtes */
+}
+
 
 footer {
     background-color: #c28618;

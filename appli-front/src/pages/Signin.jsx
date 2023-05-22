@@ -1,7 +1,12 @@
-// src/Signin.js
+
+
+// Signin.js
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
+import '../frontAssets/css//Signin.css';
+
+
 
 // Composant de connexion (formulaire) avec hooks et fonction fléchée (useState) et useContext (AuthContext)  (contexte d'authentification)
 const Signin = () => {
@@ -26,19 +31,19 @@ const Signin = () => {
     <div className="container">
       <h2>Signin</h2>
       <form onSubmit={handleSubmit}>
-        <input
+        <input className="mail-pass"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
+        <input className="mail-pass"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Signin</button>
+        <button className="signin" type="submit">Signin</button>
       </form>
     </div>
   );

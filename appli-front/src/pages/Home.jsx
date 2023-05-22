@@ -358,19 +358,19 @@ const Home = () => {
               <div className="compteur-container">
                 <div className="item-compteur">
                   <p>
-                    <label htmlFor="date-debut">Date de début d'arrêt:</label>
+                    <label className="date" htmlFor="date-debut">Date de début d'arrêt:</label>
                     <span className="champs-input"><input type="date" id="date-debut" /></span>
                   </p>
                 </div>
                 <div className="item-compteur">
                   <p>
-                    <label htmlFor="jours-arret">Nombre de jours d'arrêt:</label>
+                    <label className="date" htmlFor="jours-arret">Nombre de jours d'arrêt:</label>
                     <span className="champs-input-jour"><input type="number" id="jours-arret" readOnly /></span>
                   </p>
                 </div>
                 <div className="item-compteur">
                   <p>
-                    <label htmlFor="date-du-jour">Date du jour:</label>
+                    <label className="date" htmlFor="date-du-jour">Date du jour:</label>
                     <span className="champs-input"><input type="date" id="date-du-jour" readOnly /></span>
                   </p>
                 </div>
@@ -419,23 +419,26 @@ const Home = () => {
 
         <section className="messages">
           <h2 className="messages-title">Messages et astuces</h2>
-          <div className="message-box">
-            <div className="box-title">
-              <h3>Messages</h3>
+          <div className="messages-container">
+            <div className="message-box">
+              <div className="box-title">
+                <h3>Messages</h3>
+              </div>
+              <div>
+                <p> {/* Votre contenu de message ici */} </p>
+              </div>
             </div>
-            <div>
-              <p> {/* Votre contenu de message ici */} </p>
-            </div>
-          </div>
-          <div className="astuces-box">
-            <div className="box-title">
-              <h3>Astuces</h3>
-            </div>
-            <div>
-              <p> {/* Votre contenu d'astuce ici */} </p>
+            <div className="astuces-box">
+              <div className="box-title">
+                <h3>Astuces</h3>
+              </div>
+              <div>
+                <p> {/* Votre contenu d'astuce ici */} </p>
+              </div>
             </div>
           </div>
         </section>
+
       </main>
 
       <footer>
