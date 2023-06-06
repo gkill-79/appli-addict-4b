@@ -2,7 +2,6 @@
 
 // src/routes/routeAdvices/findAllAdvices.js
 
-
 const { Advice } = require('../../db/sequelize');
 const { Op } = require('sequelize');
 

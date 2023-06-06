@@ -60,7 +60,7 @@
 
 
 
-
+// src\routes\routePatients\findAllPatient.js
 
 const { Patient } = require('../../db/sequelize');
 const { Op } = require('sequelize');

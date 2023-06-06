@@ -9,7 +9,7 @@ const AddictionsList = () => {
   // const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3300/addictions")
+    fetch("http://localhost:3000/addictions")
       .then((addictionsDataJson) => addictionsDataJson.json())
       .then((addictionsDataJs) => {
         setAddictionsData(addictionsDataJs.data);
@@ -17,7 +17,7 @@ const AddictionsList = () => {
   }, []);
 
   const handleDeleteClick = (addiction) => {
-    fetch("http://localhost:3300/addictions/" + addiction.id, {
+    fetch("http://localhost:3000/addictions/" + addiction.id, {
       method: "DELETE",
     })
       .then(() => {

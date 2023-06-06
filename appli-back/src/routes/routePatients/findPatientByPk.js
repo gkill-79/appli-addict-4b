@@ -1,6 +1,6 @@
 
 
-
+// src/routes/routePatients/findPatientByPk.js
 
 const { Patient } = require('../../db/sequelize')
   

@@ -92,6 +92,113 @@
 
 
 
+// import React, { useEffect, useState } from "react";
+// import "../frontAssets/css/Advice.css";
+
+// const Advice = () => {
+//   const [advices, setAdvices] = useState([]);
+//   const [newAdvice, setNewAdvice] = useState('');
+//   const [healthProfessionalMessages, setHealthProfessionalMessages] = useState([]);
+
+//   useEffect(() => {
+//     fetch('http://localhost:3000/api/routes/advices')
+//       .then(response => response.json())
+//       .then(data => setAdvices(data.data))
+//       .catch(error => console.error('Erreur lors de la récupération des conseils :', error));
+
+//     fetch('http://localhost:3000/api/routes/healthProfessionalMessages')
+//       .then(response => response.json())
+//       .then(data => setHealthProfessionalMessages(data.data))
+//       .catch(error => console.error('Erreur lors de la récupération des messages des professionnels de santé :', error));
+//   }, []);
+
+//   const createAdvice = () => {
+//     fetch('http://localhost:3000/api/routes/advices', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ name: newAdvice })
+//     })
+//       .then(response => response.json())
+//       .then(data => {
+//         setAdvices([...advices, data.data]);
+//         setNewAdvice('');
+//       })
+//       .catch(error => console.error('Erreur lors de la création d\'un conseil :', error));
+//   };
+
+//   const deleteAdvice = (id) => {
+//     console.log(`Suppression du conseil avec l'id : ${id}`);  // Affiche l'ID du conseil à supprimer
+//     fetch(`http://localhost:3000/api/routes/advices/${id}`, {
+//       method: 'DELETE'
+//     })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`Erreur HTTP : ${response.status}`);  // Si la requête échoue, on lance une erreur
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(`Réponse du serveur : ${JSON.stringify(data)}`);  // Affiche la réponse du serveur
+//       setAdvices(advices.filter(advice => advice.id !== data.data.id));
+//     })
+//     .catch(error => console.error('Erreur lors de la suppression d\'un conseil :', error));
+// };
+
+//   return (
+//     <div className="page-container">
+//       <div className="left-section">
+//         <h1>Conseils personnalisés</h1>
+//         <div className="container">
+//           {advices.map((advice, index) => (
+//             <div className="advice-box" key={index}>
+//               <h2>{advice.name}</h2>
+//               <p>{advice.content}</p>
+//               <button className="delete-button" onClick={() => deleteAdvice(advice.id)}>Supprimer ce conseil</button>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+
+//       <div className="middle-section">
+//         <div className="input-section">
+//           <textarea className="advice-input" value={newAdvice} onChange={e => setNewAdvice(e.target.value)} placeholder="Entrez vos conseils et astuces ici..." />
+//           <div className="buttons-section">
+//             <button className="add-button" onClick={createAdvice}>Ajouter un nouveau conseil</button>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="right-section">
+//         <h2>Messages des professionnels de santé</h2>
+//         <div className="message-container">
+//           {healthProfessionalMessages.map((message, index) => (
+//             <div className="message-box" key={index}>
+//               <div className="message-header">
+//                 <span className="message-sender">{message.sender}</span>
+//                 <span className="message-timestamp">{new Date(message.timestamp).toLocaleString()}</span>
+//               </div>
+//               <p className="message-content">{message.content}</p>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Advice;
+
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from "react";
 import "../frontAssets/css/Advice.css";
 
@@ -101,19 +208,27 @@ const Advice = () => {
   const [healthProfessionalMessages, setHealthProfessionalMessages] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3300/api/routes/advices')
+    fetch('http://localhost:3000/api/routes/advices', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then(response => response.json())
       .then(data => setAdvices(data.data))
       .catch(error => console.error('Erreur lors de la récupération des conseils :', error));
 
-    fetch('http://localhost:3300/api/routes/healthProfessionalMessages')
+    fetch('http://localhost:3000/api/routes/healthProfessionalMessages', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then(response => response.json())
       .then(data => setHealthProfessionalMessages(data.data))
       .catch(error => console.error('Erreur lors de la récupération des messages des professionnels de santé :', error));
   }, []);
 
   const createAdvice = () => {
-    fetch('http://localhost:3300/api/routes/advices', {
+    fetch('http://localhost:3000/api/routes/advices', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -130,8 +245,11 @@ const Advice = () => {
 
   const deleteAdvice = (id) => {
     console.log(`Suppression du conseil avec l'id : ${id}`);  // Affiche l'ID du conseil à supprimer
-    fetch(`http://localhost:3300/api/routes/advices/${id}`, {
-      method: 'DELETE'
+    fetch(`http://localhost:3000/api/routes/advices/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
     .then(response => {
       if (!response.ok) {
@@ -146,60 +264,49 @@ const Advice = () => {
     .catch(error => console.error('Erreur lors de la suppression d\'un conseil :', error));
 };
 
-  return (
-    <div className="page-container">
-      <div className="left-section">
-        <h1>Conseils personnalisés</h1>
-        <div className="container">
-          {advices.map((advice, index) => (
-            <div className="advice-box" key={index}>
-              <h2>{advice.name}</h2>
-              <p>{advice.content}</p>
-              <button className="delete-button" onClick={() => deleteAdvice(advice.id)}>Supprimer ce conseil</button>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="middle-section">
-        <div className="input-section">
-          <textarea className="advice-input" value={newAdvice} onChange={e => setNewAdvice(e.target.value)} placeholder="Entrez vos conseils et astuces ici..." />
-          <div className="buttons-section">
-            <button className="add-button" onClick={createAdvice}>Ajouter un nouveau conseil</button>
+return (
+  <div className="page-container">
+    <div className="left-section">
+      <h1>Conseils personnalisés</h1>
+      <div className="container">
+        {advices.map((advice, index) => (
+          <div className="advice-box" key={index}>
+            <h2>{advice.name}</h2>
+            <p>{advice.content}</p>
+            <button className="delete-button" onClick={() => deleteAdvice(advice.id)}>Supprimer ce conseil</button>
           </div>
-        </div>
+        ))}
       </div>
+    </div>
 
-      <div className="right-section">
-        <h2>Messages des professionnels de santé</h2>
-        <div className="message-container">
-          {healthProfessionalMessages.map((message, index) => (
-            <div className="message-box" key={index}>
-              <div className="message-header">
-                <span className="message-sender">{message.sender}</span>
-                <span className="message-timestamp">{new Date(message.timestamp).toLocaleString()}</span>
-              </div>
-              <p className="message-content">{message.content}</p>
-            </div>
-          ))}
+    <div className="middle-section">
+      <div className="input-section">
+        <textarea className="advice-input" value={newAdvice} onChange={e => setNewAdvice(e.target.value)} placeholder="Entrez vos conseils et astuces ici..." />
+        <div className="buttons-section">
+          <button className="add-button" onClick={createAdvice}>Ajouter un nouveau conseil</button>
         </div>
       </div>
     </div>
-  );
+
+    <div className="right-section">
+      <h2>Messages des professionnels de santé</h2>
+      <div className="message-container">
+        {healthProfessionalMessages.map((message, index) => (
+          <div className="message-box" key={index}>
+            <div className="message-header">
+              <span className="message-sender">{message.sender}</span>
+              <span className="message-timestamp">{new Date(message.timestamp).toLocaleString()}</span>
+            </div>
+            <p className="message-content">{message.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
 };
 
 export default Advice;
-
-
-
-
-
-
-
-
-
-
-
 
 
 

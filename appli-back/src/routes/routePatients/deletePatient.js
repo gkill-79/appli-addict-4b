@@ -1,7 +1,7 @@
 
 
 
-
+// src/routes/routePatients/deletePatient.js
 
 const { Patient } = require('../../db/sequelize');
   

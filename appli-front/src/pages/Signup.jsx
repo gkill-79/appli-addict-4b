@@ -12,7 +12,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       // Appel à votre API pour enregistrer les informations d'utilisateur
-      const response = await fetch('https://votre-api.com/inscription', {
+      const response = await fetch('https://localhost:3000/inscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

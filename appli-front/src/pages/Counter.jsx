@@ -285,7 +285,11 @@ const Counter = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3300/api/routes/compteur/1");
+      const response = await fetch("http://localhost:3000/api/routes/routeCompteur/1", {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       const data = await response.json();
       if (data) {
         setCount(data.count);
@@ -294,7 +298,7 @@ const Counter = () => {
     }
     fetchData();
   }, []);
-
+  
   useEffect(() => {
     localStorage.setItem('compteur', count);
     localStorage.setItem('date-debut', dateDebut);
@@ -302,7 +306,7 @@ const Counter = () => {
       localStorage.setItem('dernierClic', dernierClic.toString());
     }
   }, [count, dateDebut, dernierClic]);
-
+  
   const handleClick = () => {
     let maintenant = new Date();
     if (!dernierClic || maintenant - dernierClic >= 24 * 60 * 60 * 1000) {
@@ -317,19 +321,20 @@ const Counter = () => {
       alert("Vous ne pouvez cliquer qu'une fois toutes les 24 heures");
     }
   };
-
+  
   const handleReset = () => {
     setCount(0);
     setDernierClic(null);
     setDateDebut('');
     alert("Le compteur a été réinitialisé");
   };
+  
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setTotal(prevTotal => prevTotal + Number(dailySum));
-    setCount(prevCount => prevCount + Number(dailySum));
-    const response = await fetch("http://localhost:3300/api/routes/compteur/1", {
+    const response = await fetch("http://localhost:3000/api/routes/routeCompteur/updateCompteur", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -343,7 +348,8 @@ const Counter = () => {
     } else {
       alert("Erreur lors de l'enregistrement des données.");
     }
-  };
+};
+
 
   return (
     <main className="counter-main">

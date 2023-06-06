@@ -522,28 +522,42 @@ h2 {
 .messages {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
 }
 
-.message-box, .astuces-box {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.messages-container {
+.messages-container1 {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
 }
 
-.message-box, .astuces-box {
-    width: 45%;  /* Réduit la largeur à 45% pour laisser un peu d'espace entre les boîtes */
-    padding: 20px;
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.message-box {
+    width: 40%;  
+    padding: 80px;
     box-sizing: border-box;
-    border: 1px solid #c28618;  /* Ajoute une bordure pour mieux distinguer les boîtes */
-    border-radius: 5px;  /* Ajoute un peu d'arrondissement aux coins des boîtes */
+    border: 1px solid #c28618;
+    border-radius: 5px;
+    margin: 20px;
+    order: -1;
+}
+
+
+.astuces-box {
+    width: 40%;  
+    padding: 80px;
+    box-sizing: border-box;
+    border: 1px solid #c28618;
+    border-radius: 5px;
+    margin: 20px;
+    order: 1;
 }
 
 

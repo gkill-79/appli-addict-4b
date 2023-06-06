@@ -1,7 +1,7 @@
 
 
 
-
+//src/routes/routeAddictions/createAddiction.js
 
 const { Addiction } = require('../../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')

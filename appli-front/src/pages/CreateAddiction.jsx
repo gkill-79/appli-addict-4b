@@ -13,7 +13,7 @@ let CreateAddictionComponent = () => {
     const name = event.target.name.value;
     const description = event.target.description.value;
 
-    fetch("http://localhost:3300/addictions", {
+    fetch("http://localhost:3000/addictions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

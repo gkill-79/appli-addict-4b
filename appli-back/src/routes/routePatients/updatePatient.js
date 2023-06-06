@@ -1,7 +1,7 @@
 
 
 
-
+// src/routes/routePatients/updatePatient.js
 
 const { Patient } = require('../../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')

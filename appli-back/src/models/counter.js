@@ -1,6 +1,6 @@
 
 
-
+// src/models/counter.js
 
 module.exports = (sequelize, DataTypes) => {
   const Counter = sequelize.define('counter', {
